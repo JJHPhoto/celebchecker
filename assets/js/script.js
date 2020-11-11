@@ -2,6 +2,8 @@
 // Initial array of movies
 var movies = [];
 
+var actors = [];
+
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayMovieInfo() {
 
