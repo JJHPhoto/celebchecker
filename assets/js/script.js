@@ -4,6 +4,8 @@ var movies = [];
 
 var actors = [];
 
+var count = 0;
+
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayMovieInfo() {
 
