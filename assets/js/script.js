@@ -4,7 +4,11 @@ var movies = [];
 
 var actors = [];
 
+<<<<<<< HEAD
 var nationality = [];
+=======
+var count = 0;
+>>>>>>> b3dabc022492e8de5209789970cc10c5de4f02e4
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayMovieInfo() {
