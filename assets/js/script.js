@@ -12,7 +12,7 @@ function displayMovieInfo(event) {
 
     // var movie = $(this).attr("data-name");
     var movie = $("#movie-input").val().trim();
-    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=4829e09f";
     console.log(movie);
 
     // Creating an AJAX call for the specific movie button being clicked
@@ -27,29 +27,29 @@ function displayMovieInfo(event) {
         var movieDiv = $("<div class='movie'>");
 
         // Storing the rating data
-        var rating = response.Rated;
-
+        var actors = response.Actors.split(",");
+        console.log(actors);
         console
         // Creating an element to have the rating displayed
-        var pOne = $("<p>").text("Rating: " + rating);
+        var pOne = $("<p>").text("Actors: " + actors);
 
         // Displaying the rating
         movieDiv.append(pOne);
 
         // Storing the release year
-        var released = response.Released;
+        var director = response.Director.split(",");
 
         // Creating an element to hold the release year
-        var pTwo = $("<p>").text("Released: " + released);
+        var pTwo = $("<p>").text("Director(s): " + director);
 
         // Displaying the release year
         movieDiv.append(pTwo);
 
         // Storing the plot
-        var plot = response.Plot;
+        var writer = response.Writer.split(",");
 
         // Creating an element to hold the plot
-        var pThree = $("<p>").text("Plot: " + plot);
+        var pThree = $("<p>").text("Writer(s): " + writer);
 
         // Appending the plot
         movieDiv.append(pThree);
