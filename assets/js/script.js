@@ -31,14 +31,14 @@ function displayMovieInfo(event) {
         console.log(actors);
         // Creating an element to have the rating displayed
         var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
+                // Displaying the rating
+        movieDiv.append(pOne);
 
 
         for (var i=0; i<actors.length; i++){
-            var indActor = $("<button>").text(actors[i]);
-             $("#actors-view").append(indActor);
             console.log(actors[i]);
-
-
+            var p2 = $("<button>").text(actors[i]);
+            movieDiv.append(p2);
         }
         
         
