@@ -29,9 +29,20 @@ function displayMovieInfo(event) {
         // Storing the rating data
         var actors = response.Actors.split(",");
         console.log(actors);
-        console
         // Creating an element to have the rating displayed
-        var pOne = $("<p>").text("Actors: " + actors);
+        var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
+                // Displaying the rating
+        movieDiv.append(pOne);
+
+
+        for (var i=0; i<actors.length; i++){
+            console.log(actors[i]);
+            var p2 = $("<button>").text(actors[i]);
+            movieDiv.append(p2);
+        }
+        
+        
+        
 
         // Displaying the rating
         movieDiv.append(pOne);
