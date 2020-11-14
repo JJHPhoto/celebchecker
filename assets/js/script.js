@@ -1,7 +1,8 @@
 
 // Initial array of movies
 var movies = [];
-var actors = [];
+// var actors= [];
+var actorsList = [];
 var nationality = [];
 var count = 0;
 
@@ -25,10 +26,11 @@ function displayMovieInfo(event) {
 
         // Creating a div to hold the movie
         var movieDiv = $("<div class='movie'>");
-
+        actorsList = response.Actors;
         // Storing the rating data
         var actors = response.Actors.split(",");
         console.log(actors);
+
         // Creating an element to have the rating displayed
         var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
                 // Displaying the rating
@@ -76,10 +78,69 @@ function displayMovieInfo(event) {
 
         // Putting the entire movie above the previous movies
         $("#movies-view").append(movieDiv);
+
+        checkNationality();
+
     });
 
 }
 
+function checkNationality( ) {
+// var movie = $(this).attr("data-name");
+    
+    console.log(actorsList);
+    
+    // var name = "Michael";
+
+    var name = actorsList[0].stringify;
+    var queryURL = "https://api.nationalize.io?name=" + name;
+    
+    var nationDiv = $("<div class='nation'>");
+
+    console.log(name);
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+
+        var countries = response.country;
+
+        console.log(response);
+             
+        var pOne = $("<div id='nation-view'></div>").text("The name: " + name + " is from the following countries:");
+        // Displaying the rating
+        nationDiv.append(pOne);
+
+
+
+        for (let i = 0; i < countries.length; i++) {
+
+            // const element = array[index];
+            console.log(countries[i].country_id);
+            
+            var pOne = $("<div id='nation-view'></div>").text(countries[i].country_id + " with a probability of " + ((countries[i].probability)*100).toFixed(2) + "%");
+            // Displaying the rating
+            nationDiv.append(pOne);
+
+            $("#nation-view").append(nationDiv);
+            
+        }
+        
+        
+        // console.log(response.country[0]);
+        
+        // console.log(countries);
+
+        // Creating an element to have the rating displayed
+        
+
+
+    });
+}
+
+
+
+// Adding a click event listener to all elements with a class of "movie-btn"
 
 
 // Adding a click event listener to all elements with a class of "movie-btn"
