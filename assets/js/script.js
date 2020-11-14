@@ -1,7 +1,7 @@
 
 // Initial array of movies
 var movies = [];
-var actors= [];
+var actors = [];
 var actorsList = [];
 var nationality = [];
 var count = 0;
@@ -21,7 +21,7 @@ function displayMovieInfo(event) {
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
 
         console.log(response);
 
@@ -37,18 +37,15 @@ function displayMovieInfo(event) {
 
         // Creating an element to have the rating displayed
         var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
-                // Displaying the rating
+        // Displaying the rating
         movieDiv.append(pOne);
 
 
-        for (var i=0; i<actors.length; i++){
+        for (var i = 0; i < actors.length; i++) {
             console.log(actors[i]);
             var p2 = $("<button>").text(actors[i]);
             movieDiv.append(p2);
         }
-        
-        
-        
 
         // Displaying the rating
         movieDiv.append(pOne);
@@ -89,28 +86,30 @@ function displayMovieInfo(event) {
 
 }
 
-function checkNationality( name) {
-// var movie = $(this).attr("data-name");
-    
-    // console.log(actorsList);
-    
-    // var name = "Michael";
+
+function checkNationality() {
+    // var movie = $(this).attr("data-name");
+
+    console.log(actorsList);
+
+    var name = "Michael";
+
 
     // var name = actors[0].split(' ')[0];
     var queryURL = "https://api.nationalize.io?name=" + name;
-    
+
     var nationDiv = $("<div class='nation'>");
 
     console.log(name);
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
 
         var countries = response.country;
 
         console.log(response);
-             
+
         var pOne = $("<div id='nation-view'></div>").text("The name: " + name + " is from the following countries:");
         // Displaying the rating
         nationDiv.append(pOne);
@@ -121,28 +120,40 @@ function checkNationality( name) {
 
             // const element = array[index];
             console.log(countries[i].country_id);
-            
-            var pOne = $("<div id='nation-view'></div>").text(countries[i].country_id + " with a probability of " + ((countries[i].probability)*100).toFixed(2) + "%");
+
+            var pOne = $("<div id='nation-view'></div>").text(countries[i].country_id + " with a probability of " + ((countries[i].probability) * 100).toFixed(2) + "%");
             // Displaying the rating
             nationDiv.append(pOne);
 
             $("#nation-view").append(nationDiv);
-            
+
         }
-        
-        
+
+
         // console.log(response.country[0]);
-        
+
         // console.log(countries);
 
         // Creating an element to have the rating displayed
-        
+
 
 
     });
 }
 
 
+
+// Submit input with Enter Key
+
+var inputEl = $("#movie-input");
+
+inputEl.keyup(function (e) {
+    if (e.which === 13) {
+        e.preventDefault();
+        // $('form').submit();
+        displayMovieInfo(event);
+    }
+});
 
 // Adding a click event listener to all elements with a class of "movie-btn"
 
