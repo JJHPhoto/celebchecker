@@ -89,13 +89,8 @@ function checkNationality() {
     // var movie = $(this).attr("data-name");
 
     console.log(actorsList);
-<<<<<<< HEAD
-
-    // var name = "Michael";
-=======
     
     var name = "Michael";
->>>>>>> 17aa82c0e50607f02a9a998d601c00f40e56de92
 
     // var name = actors[0].split(' ')[0];
     var queryURL = "https://api.nationalize.io?name=" + name;
