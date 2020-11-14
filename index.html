@@ -20,28 +20,42 @@
   </head>
 
   <body>
-    <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title has-text-centered">Movie Search</h1>
-          <h2 class="subtitle has-text-centered">Search for a movie</h2>
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title has-text-centered has-text-primary-light">Movie Search</h1>
+            <h2 class="subtitle has-text-centered has-text-primary-light">Search for a movie</h2>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="columns">
-        <div class="column">
-          <input
-            class="input"
-            id="movie-input"
-            type="text"
-            placeholder="Search movie"
-          />
+      </section>
+      <section class="section container">
+        <div class="columns">
+          <div class="column is-half is-offset-one-quarter">
+            <input
+              class="input"
+              id="movie-input"
+              type="text"
+              placeholder="Search movie"
+            />
+          </div>
+          <div class="column">
+            <input class="button has-background-primary has-text-primary-light" id="add-movie" type="submit" value="Go" />
+          </div>
         </div>
-        `
-        <div class="column">
-          <input class="button" id="add-movie" type="submit" value="Go" />
+      </section>
+      <section class="section">
+        <div class="columns">
+          
+          <div class="column is-four-fifths
+          is-offset-one-fifth" id="movies-view">
+            Movie information will generate here with clickable buttons.
+          </div>
+        </section>
+        <section class="section">
+          <div class="column is-four-fifths
+          is-offset-one-fifth">Put nationality results</div>
         </div>
+<<<<<<< HEAD
       </div>
     </section>
     <section class="section">
@@ -54,6 +68,9 @@
         Put nationality results
       </div>
     </section>
+=======
+        </section>
+>>>>>>> 8f8d46cfa70b0a368d6d450f62d05a4c0d7ee311
   </body>
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
