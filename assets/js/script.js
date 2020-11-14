@@ -1,7 +1,7 @@
 
 // Initial array of movies
 var movies = [];
-var actors= [];
+var actors = [];
 var actorsList = [];
 var nationality = [];
 var count = 0;
@@ -33,6 +33,7 @@ function displayMovieInfo(event) {
         var actors = response.Actors.split(",");
         console.log(actors);
         console.log(actors[0].split(' ')[0]);
+        name = actors[0].split(' ')[0];
 
         // Creating an element to have the rating displayed
         var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
@@ -79,18 +80,18 @@ function displayMovieInfo(event) {
         // Putting the entire movie above the previous movies
         $("#movies-view").append(movieDiv);
 
-        checkNationality();
+        checkNationality(name);
 
     });
 
 }
 
-function checkNationality() {
+function checkNationality(name) {
     // var movie = $(this).attr("data-name");
 
-    console.log(actorsList);
-    
-    var name = "Michael";
+    // console.log(actorsList);
+
+    // var name = "Michael";
 
     // var name = actors[0].split(' ')[0];
     var queryURL = "https://api.nationalize.io?name=" + name;
