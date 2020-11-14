@@ -7,6 +7,9 @@ var nationality = [];
 var count = 0;
 var name;
 
+var inputEl = $("#movie-input");
+
+
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayMovieInfo(event) {
 
@@ -146,6 +149,13 @@ function checkNationality( name) {
 
 // Adding a click event listener to all elements with a class of "movie-btn"
 
+inputEl.keyup(function (e) {
+    if (e.which === 13) {
+        e.preventDefault();
+        // $('form').submit();
+        displayMovieInfo(event);
+    }
+});
 
 // Adding a click event listener to all elements with a class of "movie-btn"
 $(document).on("click", "#add-movie", displayMovieInfo);
