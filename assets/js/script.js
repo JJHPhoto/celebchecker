@@ -1,10 +1,11 @@
 
 // Initial array of movies
 var movies = [];
-// var actors= [];
+var actors= [];
 var actorsList = [];
 var nationality = [];
 var count = 0;
+var name;
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayMovieInfo(event) {
@@ -27,9 +28,11 @@ function displayMovieInfo(event) {
         // Creating a div to hold the movie
         var movieDiv = $("<div class='movie'>");
         actorsList = response.Actors;
+        console.log(actorsList);
         // Storing the rating data
         var actors = response.Actors.split(",");
         console.log(actors);
+        console.log(actors[0].split(' ')[0]);
 
         // Creating an element to have the rating displayed
         var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
@@ -90,9 +93,9 @@ function checkNationality( ) {
     
     console.log(actorsList);
     
-    // var name = "Michael";
+    var name = "Michael";
 
-    var name = actorsList[0].stringify;
+    // var name = actors[0].split(' ')[0];
     var queryURL = "https://api.nationalize.io?name=" + name;
     
     var nationDiv = $("<div class='nation'>");
