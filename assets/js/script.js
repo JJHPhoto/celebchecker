@@ -86,12 +86,14 @@ function displayMovieInfo(event) {
 
 }
 
-function checkNationality(name) {
+
+function checkNationality() {
     // var movie = $(this).attr("data-name");
 
-    // console.log(actorsList);
+    console.log(actorsList);
 
-    // var name = "Michael";
+    var name = "Michael";
+
 
     // var name = actors[0].split(' ')[0];
     var queryURL = "https://api.nationalize.io?name=" + name;
@@ -140,6 +142,18 @@ function checkNationality(name) {
 }
 
 
+
+// Submit input with Enter Key
+
+var inputEl = $("#movie-input");
+
+inputEl.keyup(function (e) {
+    if (e.which === 13) {
+        e.preventDefault();
+        // $('form').submit();
+        displayMovieInfo(event);
+    }
+});
 
 // Adding a click event listener to all elements with a class of "movie-btn"
 

@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+<script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+<link rel="stylesheet" href="./assets/css/style.css" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
 <head>
   <meta charset="utf-8" />
   <title>Favorite Movies</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
-  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
-<body>
-  <section class="hero is-primary">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title has-text-centered has-text-primary-light">Movie Search</h1>
-        <h2 class="subtitle has-text-centered has-text-primary-light">Search for a movie</h2>
-      </div>
-    </div>
-  </section>
-  <section class="section container">
-    <div class="columns">
-      <div class="column is-half is-offset-one-quarter">
-        <input class="input" id="movie-input" type="text" placeholder="Search movie" />
-      </div>
-      <div class="column">
-        <input class="button has-background-primary has-text-primary-light" id="add-movie" type="submit" value="Go" />
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="columns">
-
-      <div class="column is-four-fifths
+  <body>
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title has-text-centered has-text-primary-light">Movie Search</h1>
+            <h2 class="subtitle has-text-centered has-text-primary-light">Search for a movie</h2>
+          </div>
+        </div>
+      </section>
+      <section class="section container">
+        <div class="columns">
+          <div class="column is-half is-offset-one-quarter">
+            <input
+              class="input"
+              id="movie-input"
+              type="text"
+              placeholder="Search movie"
+            />
+          </div>
+          <div class="column">
+            <input class="button has-background-primary has-text-primary-light" id="add-movie" type="submit" value="Go" />
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="columns">
+          
+          <div class="column is-four-fifths
           is-offset-one-fifth" id="movies-view">
-        Movie information will generate here with clickable buttons.
-      </div>
-  </section>
-  <section class="section">
-    <div class="column is-four-fifths
+            Movie information will generate here with clickable buttons.
+          </div>
+        </section>
+        <section class="section">
+          <div class="column is-four-fifths
           is-offset-one-fifth" id="nation-view">Put nationality results</div>
-    </div>
-    </div>
-  </section>
-</body>
+        </div>
+      </div>
+    </section>
+  </body>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="./assets/js/script.js"></script>
 
 </html>
