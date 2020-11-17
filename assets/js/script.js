@@ -146,17 +146,6 @@ function checkNationality() {
 
 
 
-// Submit input with Enter Key
-
-var inputEl = $("#movie-input");
-
-inputEl.keyup(function (e) {
-    if (e.which === 13) {
-        e.preventDefault();
-        // $('form').submit();
-        displayMovieInfo(event);
-    }
-});
 
 // Adding a click event listener to all elements with a class of "movie-btn"
 
