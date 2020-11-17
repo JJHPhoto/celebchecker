@@ -139,10 +139,10 @@ function savedActorClick(event) {
   // var fullname = event.target.button;
   // var fullname = event.target.matches(".actor");
  
-  var newName = fullname.split(",")[0];
+  var newName = fullname.trim().split(",")[0];
   var newnewName = newName.split(" ")[0];
   console.log("from new function: " + newnewName);
-  // checkNationality(newName);
+  checkNationality(newnewName);
 }
 // Adding a click event listener to all elements with a class of "movie-btn"
 
