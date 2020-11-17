@@ -39,7 +39,9 @@ function displayMovieInfo(event) {
 
     for (var i = 0; i < actors.length; i++) {
       console.log(actors[i]);
-      var a = $("<button>");
+      var a = $(
+        "<button class= 'button has-background-primary has-text-primary-light'>"
+      );
       var p2 = a.text(actors[i]);
       p2.addClass("actor");
       p2.attr("data-name", actors[i]);
@@ -52,8 +54,17 @@ function displayMovieInfo(event) {
     // Displaying the rating
     movieDiv.append(pOne);
 
-    // Storing the release year
+    // Storing the director's name
     var director = response.Director.split(",");
+    // // ********** director button ************************
+    for (var i = 0; i < director.length; i++) {
+      // console.log( director[i]);
+      var d1 = $(
+        "<button class= 'button has-background-primary has-text-primary-light'>"
+      ).text(director[i]);
+      d1.addClass("director");
+      movieDiv.append(d1);
+    }
 
     // Creating an element to hold the release year
     var pTwo = $("<p>").text("Director(s): " + director);
@@ -63,6 +74,14 @@ function displayMovieInfo(event) {
 
     // Storing the plot
     var writer = response.Writer.split(",");
+    // ********* writer button ********************
+    for (var i = 0; i < writer.length; i++) {
+      var w1 = $(
+        "<button class= 'button has-background-primary has-text-primary-light'>"
+      ).text(writer[i]);
+      w1.addClass("writer");
+      movieDiv.append(w1);
+    }
 
     // Creating an element to hold the plot
     var pThree = $("<p>").text("Writer(s): " + writer);
@@ -138,7 +157,7 @@ function savedActorClick(event) {
   // var name = $("#movie-input").val().trim();
   // var fullname = event.target.button;
   // var fullname = event.target.matches(".actor");
- 
+
   var newName = fullname.trim().split(",")[0];
   var newnewName = newName.split(" ")[0];
   console.log("from new function: " + newnewName);
