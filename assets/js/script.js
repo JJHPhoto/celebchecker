@@ -35,12 +35,19 @@ function displayMovieInfo(event) {
     // Displaying the rating
     movieDiv.append(pOne);
 
+    var actorDiv = $("<div class='actors'>");
+
     for (var i = 0; i < actors.length; i++) {
       console.log(actors[i]);
-      var p2 = $("<button>").text(actors[i]);
+      var a = $("<button>");
+      var p2 = a.text(actors[i]);
       p2.addClass("actor");
-      movieDiv.append(p2);
+      p2.attr("data-name", actors[i]);
+      console.log(p2);
+      actorDiv.append(p2);
     }
+
+    movieDiv.append(actorDiv);
 
     // Displaying the rating
     movieDiv.append(pOne);
@@ -126,10 +133,16 @@ inputEl.keyup(function (e) {
 
 function savedActorClick(event) {
   event.preventDefault();
-  var fullname = $(this).text();
-  name = fullname.split(" ")[0];
-  console.log("from new function: " + name);
-  checkNationality(name);
+  var fullname = $(this).attr("data-name");
+  console.log("Button value:" + fullname);
+  // var name = $("#movie-input").val().trim();
+  // var fullname = event.target.button;
+  // var fullname = event.target.matches(".actor");
+ 
+  var newName = fullname.trim().split(",")[0];
+  var newnewName = newName.split(" ")[0];
+  console.log("from new function: " + newnewName);
+  checkNationality(newnewName);
 }
 // Adding a click event listener to all elements with a class of "movie-btn"
 
