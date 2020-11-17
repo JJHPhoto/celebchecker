@@ -1,172 +1,140 @@
-
 // Initial array of movies
 var movies = [];
 var actors = [];
-var actorsList = [];
 var nationality = [];
 var count = 0;
 var name;
 
 var inputEl = $("#movie-input");
 
-
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayMovieInfo(event) {
+  event.preventDefault();
 
-    event.preventDefault();
+  // var movie = $(this).attr("data-name");
+  var movie = $("#movie-input").val().trim();
+  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=4829e09f";
+  console.log(movie);
 
-    // var movie = $(this).attr("data-name");
-    var movie = $("#movie-input").val().trim();
-    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=4829e09f";
-    console.log(movie);
+  // Creating an AJAX call for the specific movie button being clicked
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
 
-    // Creating an AJAX call for the specific movie button being clicked
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
+    // Creating a div to hold the movie
+    var movieDiv = $("<div class='movie'>");
+    var actors = response.Actors.split(",");
+    console.log(actors);
+    console.log(actors[0].split(" ")[0]);
+    name = actors[0].split(" ")[0];
 
-        console.log(response);
+    // Creating an element to have the rating displayed
+    var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
+    // Displaying the rating
+    movieDiv.append(pOne);
 
-        // Creating a div to hold the movie
-        var movieDiv = $("<div class='movie'>");
-        actorsList = response.Actors;
-        console.log(actorsList);
-        // Storing the rating data
-        var actors = response.Actors.split(",");
-        console.log(actors);
-        console.log(actors[0].split(' ')[0]);
-        name = actors[0].split(' ')[0];
+    for (var i = 0; i < actors.length; i++) {
+      console.log(actors[i]);
+      var p2 = $("<button>").text(actors[i]);
+      p2.addClass("actor");
+      movieDiv.append(p2);
+    }
 
-        // Creating an element to have the rating displayed
-        var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
-        // Displaying the rating
-        movieDiv.append(pOne);
+    // Displaying the rating
+    movieDiv.append(pOne);
 
+    // Storing the release year
+    var director = response.Director.split(",");
 
-        for (var i = 0; i < actors.length; i++) {
-            console.log(actors[i]);
-            var p2 = $("<button>").text(actors[i]);
-            movieDiv.append(p2);
-        }
+    // Creating an element to hold the release year
+    var pTwo = $("<p>").text("Director(s): " + director);
 
-        // Displaying the rating
-        movieDiv.append(pOne);
+    // Displaying the release year
+    movieDiv.append(pTwo);
 
-        // Storing the release year
-        var director = response.Director.split(",");
+    // Storing the plot
+    var writer = response.Writer.split(",");
 
-        // Creating an element to hold the release year
-        var pTwo = $("<p>").text("Director(s): " + director);
+    // Creating an element to hold the plot
+    var pThree = $("<p>").text("Writer(s): " + writer);
 
-        // Displaying the release year
-        movieDiv.append(pTwo);
+    // Appending the plot
+    movieDiv.append(pThree);
 
-        // Storing the plot
-        var writer = response.Writer.split(",");
+    // Retrieving the URL for the image
+    var imgURL = response.Poster;
 
-        // Creating an element to hold the plot
-        var pThree = $("<p>").text("Writer(s): " + writer);
+    // Creating an element to hold the image
+    var image = $("<img>").attr("src", imgURL);
 
-        // Appending the plot
-        movieDiv.append(pThree);
+    // Appending the image
+    movieDiv.append(image);
 
-        // Retrieving the URL for the image
-        var imgURL = response.Poster;
+    // Putting the entire movie above the previous movies
+    $("#movies-view").append(movieDiv);
 
-        // Creating an element to hold the image
-        var image = $("<img>").attr("src", imgURL);
-
-        // Appending the image
-        movieDiv.append(image);
-
-        // Putting the entire movie above the previous movies
-        $("#movies-view").append(movieDiv);
-
-        checkNationality(name);
-
-    });
-
+    checkNationality(name);
+  });
 }
 
+function checkNationality(name) {
+  var queryURL = "https://api.nationalize.io?name=" + name;
 
-function checkNationality() {
-    // var movie = $(this).attr("data-name");
+  var nationDiv = $("<div class='nation'>");
 
-    console.log(actorsList);
+  console.log(name);
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    var countries = response.country;
 
-    var name = "Michael";
+    console.log(response);
 
+    var pOne = $("<div id='nation-view'></div>").text(
+      "The name: " + name + " is from the following countries:"
+    );
+    nationDiv.append(pOne);
 
-    // var name = actors[0].split(' ')[0];
-    var queryURL = "https://api.nationalize.io?name=" + name;
-
-    var nationDiv = $("<div class='nation'>");
-
-    console.log(name);
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-
-        var countries = response.country;
-
-        console.log(response);
-
-        var pOne = $("<div id='nation-view'></div>").text("The name: " + name + " is from the following countries:");
-        // Displaying the rating
-        nationDiv.append(pOne);
-
-
-
-        for (let i = 0; i < countries.length; i++) {
-
-            // const element = array[index];
-            console.log(countries[i].country_id);
-
-            var pOne = $("<div id='nation-view'></div>").text(countries[i].country_id + " with a probability of " + ((countries[i].probability) * 100).toFixed(2) + "%");
-            // Displaying the rating
-            nationDiv.append(pOne);
-
-            $("#nation-view").append(nationDiv);
-
-        }
-
-
-        // console.log(response.country[0]);
-
-        // console.log(countries);
-
-        // Creating an element to have the rating displayed
-
-
-
-    });
+    for (let i = 0; i < countries.length; i++) {
+      console.log(countries[i].country_id);
+      var pOne = $("<div id='nation-view'></div>").text(
+        countries[i].country_id +
+          " with a probability of " +
+          (countries[i].probability * 100).toFixed(2) +
+          "%"
+      );
+      nationDiv.append(pOne);
+      $("#nation-view").append(nationDiv);
+    }
+  });
 }
-
-
 
 // Submit input with Enter Key
 
 var inputEl = $("#movie-input");
 
 inputEl.keyup(function (e) {
-    if (e.which === 13) {
-        e.preventDefault();
-        // $('form').submit();
-        displayMovieInfo(event);
-    }
+  if (e.which === 13) {
+    e.preventDefault();
+    // $('form').submit();
+    displayMovieInfo(event);
+  }
 });
 
+function savedActorClick(event) {
+  event.preventDefault();
+  var fullname = $(this).text();
+  name = fullname.split(" ")[0];
+  console.log("from new function: " + name);
+  checkNationality(name);
+}
 // Adding a click event listener to all elements with a class of "movie-btn"
-
-inputEl.keyup(function (e) {
-    if (e.which === 13) {
-        e.preventDefault();
-        // $('form').submit();
-        displayMovieInfo(event);
-    }
-});
 
 // Adding a click event listener to all elements with a class of "movie-btn"
 $(document).on("click", "#add-movie", displayMovieInfo);
+
+// Adding click event listeners to all elements with a class of "city"
+$(document).on("click", ".actor", savedActorClick);
