@@ -23,6 +23,7 @@ var inputEl = $("#movie-input");
 function displayMovieInfo(movie) {
   // event.preventDefault();
   $("#movies-view").empty();
+  $("#movies-poster").empty();
 
   // var movie = $("#movie-input").val().trim();
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=4829e09f";
@@ -115,26 +116,36 @@ function checkNationality(name) {
     method: "GET",
   }).then(function (response) {
     var countries = response.country;
+    
+    var pOne;
 
-    console.log(response);
+    console.log(countries.length);
 
-    var pOne = $("<div id='nation-view'></div>").text(
-      "The name: " + name + " is from the following countries:"
-    );
-    nationDiv.append(pOne);
-
-    for (let i = 0; i < countries.length; i++) {
-      console.log(countries[i].country_id);
-      country = getCountryName(countries[i].country_id);
-      var pOne = $("<div id='nation-view'></div>").text(
-        country +
-          " with a probability of " +
-          (countries[i].probability * 100).toFixed(2) +
-          "%"
-      );
+    if (countries.length === 0) {
+      pOne = $("<div id='nation-view'></div>").text(
+        "The name " + name + " is not in the database.")
+        nationDiv.append(pOne);
+      } else {
+      pOne = $("<div id='nation-view'></div>").text(
+        "The name " + name + " is from the following countries:"
+      )
       nationDiv.append(pOne);
-      $("#nation-view").append(nationDiv);
-    }
+      for (let i = 0; i < countries.length; i++) {
+        country = getCountryName(countries[i].country_id);
+        var pOneOne = $("<div id='nation-view'></div>").text(
+          country +
+            " with a probability of " +
+            (countries[i].probability * 100).toFixed(2) +
+            "%"
+        ); 
+        nationDiv.append(pOneOne);
+        }  
+        
+      };
+
+
+    $("#nation-view").append(nationDiv);
+
   });
 }
 
@@ -145,7 +156,8 @@ var inputEl = $("#movie-input");
 inputEl.keyup(function (e) {
   if (e.which === 13) {
     e.preventDefault();
-    displayMovieInfo(event);
+    movie = $("#movie-input").val().trim();
+    displayMovieInfo(movie);
   }
 });
 
@@ -160,7 +172,7 @@ function savedActorClick(event) {
   console.log("Button value:" + fullname);
   var newName = fullname.trim().split(",")[0];
   var newnewName = newName.split(" ")[0];
-  console.log("from new function: " + newnewName);
+  console.log("from new function: " + newnewName); 
   checkNationality(newnewName);
 }
 
