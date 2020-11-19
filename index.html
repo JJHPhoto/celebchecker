@@ -20,45 +20,93 @@
   </head>
 
   <body>
-      <section class="hero is-primary">
-        <div class="hero-body">
-          <div class="container">
-            <h1 class="title has-text-centered has-text-primary-light">Movie Search</h1>
-            <h2 class="subtitle has-text-centered has-text-primary-light">Search for a movie</h2>
-          </div>
-        </div>
-      </section>
-      <section class="section container">
-        <div class="columns">
-          <div class="column is-half is-offset-one-quarter">
-            <input
-              class="input"
-              id="movie-input"
-              type="text"
-              placeholder="Search movie"
-            />
-          </div>
-          <div class="column">
-            <input class="button has-background-primary has-text-primary-light" id="add-movie" type="submit" value="Go" />
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <section class="search-history"></section>
-        <h3>Search History</h3>
-        <div id="movies-search"></div>
-        <div class="columns">
-          
-          <div class="column is-four-fifths
-          is-offset-one-fifth" id="movies-view">
-            Movie information will generate here with clickable buttons.
-          </div>
-        </section>
-        <section class="section">
-          <div class="column is-four-fifths
-          is-offset-one-fifth" id="nation-view">Put nationality results</div>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title has-text-centered has-text-primary-light">
+            Movie Search
+          </h1>
+          <h2 class="subtitle has-text-centered has-text-primary-light">
+            Search for a movie
+          </h2>
         </div>
       </div>
+    </section>
+
+    <section class="section container">
+      <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+          <input
+            class="input"
+            id="movie-input"
+            type="text"
+            placeholder="Search movie"
+          />
+        </div>
+        <div class="column">
+          <input
+            class="button has-background-primary has-text-primary-light"
+            id="add-movie"
+            type="submit"
+            value="Go"
+          />
+        </div>
+      </div>
+    </section>
+    
+
+
+    
+    <section>
+    <div class="columns">
+      <div class="column is-one-fifth">
+        <p class="bd-notification is-info">Search History</p>
+        <div class="columns is-mobile">
+          <div class="column">
+            <p class="bd-notification is-info" id="movies-search">Past buttons</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="column">
+        <h3 class="bd-notification is-danger">Movie data</h3>
+        <div class="columns is-mobile">
+          <div class="column">
+            <div class="bd-notification is-danger" id="movies-poster">Movie Poster will appear here.</div>
+          </div>
+          <div class="column is-half">
+            <div class="bd-notification is-danger" id="movies-view">List of celebrities involved in the movie will appear here.</div>
+          </div>
+          <div class="column">
+            <p class="bd-notification is-danger" id="nation-view">Nationality of celebrities will appear here after their button is clicked.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- <section class="section">
+      <div class="columns is-one-fourth">
+        <div class="column">
+          <h3>Search History</h3>
+          <div id="movies-search"></div>
+        </div>
+
+        <div class="column">
+          <div class="columns is-three-fourths">
+            <div class="column is-one-fourth" id="movies-poster">
+              Movie poster
+            </div>
+
+            <div class="column is-two-fourths" id="movies-view">
+              Movie information
+            </div>
+
+            <div class="column is-one-fourth" id="nation-view">
+              Put nationality results
+            </div>
+          </div>
+        </div>
+      </div> -->
     </section>
   </body>
 
