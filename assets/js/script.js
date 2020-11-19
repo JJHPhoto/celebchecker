@@ -1,18 +1,33 @@
 // Initial array of movies
 var movies = [];
+var movie;
 var actors = [];
 var nationality = [];
 var count = 0;
 var name;
 var country;
 
+
+    // // ********** Retrieving Info from Local Storage ************************
+var localStorageCont = JSON.parse(localStorage.getItem("movies_list"));
+if (localStorageCont===null) {
+  movies = [];
+}
+else {
+    movies = localStorageCont
+    movie = movies[movies.length-1];
+    // displayMovieInfo(movie);
+}
+
 var inputEl = $("#movie-input");
 
 // displayMovieInfo function re-renders the HTML to display the appropriate content
-function displayMovieInfo(event) {
-  event.preventDefault();
+function displayMovieInfo(movie) {
+  // event.preventDefault();
+  $("#movies-view").empty();
 
-  var movie = $("#movie-input").val().trim();
+
+  // var movie = $("#movie-input").val().trim();
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=4829e09f";
   console.log(movie);
 
@@ -30,7 +45,7 @@ function displayMovieInfo(event) {
     console.log(actors[0].split(" ")[0]);
     name = actors[0].split(" ")[0];
 
-    var pOne = $("<div id='actors-view'></div>").text("Actors: " + actors);
+    var pOne = $("<div id='actors-view'></div>").text("Actors: ");
     movieDiv.append(pOne);
 
     var actorDiv = $("<div class='actors'>");
@@ -41,43 +56,44 @@ function displayMovieInfo(event) {
         "<button class= 'button has-background-primary has-text-primary-light'>"
       );
       var p2 = a.text(actors[i]);
-      p2.addClass("actor");
+      p2.addClass("name");
       p2.attr("data-name", actors[i]);
       console.log(p2);
       actorDiv.append(p2);
     }
 
     movieDiv.append(actorDiv);
-    movieDiv.append(pOne);
 
     // Storing the director's name
     var director = response.Director.split(",");
+    var pTwo = $("<p>").text("Director(s): ");
+    movieDiv.append(pTwo);
     // // ********** director button ************************
     for (var i = 0; i < director.length; i++) {
-      // console.log( director[i]);
       var d1 = $(
         "<button class= 'button has-background-primary has-text-primary-light'>"
       ).text(director[i]);
-      d1.addClass("director");
+      d1.addClass("name");
+      d1.attr("data-name", director[i]);
       movieDiv.append(d1);
     }
 
-    // Creating an element to hold the release year
-    var director = response.Director.split(",");
-    var pTwo = $("<p>").text("Director(s): " + director);
-    movieDiv.append(pTwo);
+
     var writer = response.Writer.split(",");
+    var pThree = $("<p>").text("Writer(s): ");
+    movieDiv.append(pThree);
+
     // ********* writer button ********************
     for (var i = 0; i < writer.length; i++) {
       var w1 = $(
         "<button class= 'button has-background-primary has-text-primary-light'>"
       ).text(writer[i]);
-      w1.addClass("writer");
+      w1.addClass("name");
+      w1.attr("data-name", writer[i]);
       movieDiv.append(w1);
     }
 
-    var pThree = $("<p>").text("Writer(s): " + writer);
-    movieDiv.append(pThree);
+
 
     // Retrieving the URL for the image
     var imgURL = response.Poster;
@@ -89,11 +105,12 @@ function displayMovieInfo(event) {
     // Putting the entire movie above the previous movies
     $("#movies-view").append(movieDiv);
 
-    checkNationality(name);
+    // checkNationality(name);
   });
 }
 
 function checkNationality(name) {
+  $("#nation-view").empty()
   var queryURL = "https://api.nationalize.io?name=" + name;
 
   var nationDiv = $("<div class='nation'>");
@@ -411,8 +428,52 @@ function getCountryName (countryCode) {
     }
 }
 
-// Adding a click event listener to all elements with a class of "movie-btn"
-$(document).on("click", "#add-movie", displayMovieInfo);
+
+
+function renderMovieSearchButtons() {
+  $("#movies-search").empty();
+  for (var i = 0; i < movies.length; i++) {
+      
+    var a = $("<button>");
+    a.addClass("movie");
+    a.attr("data-name", movies[i]);
+    a.text(movies[i]);
+    var linebreak = $("<br>");
+    $("#movies-search").prepend(a, linebreak);
+  }
+}
+ // Calling the renderButtons function to display the search history buttons
+ renderMovieSearchButtons();
+
+ function savedMovieClick(event) {
+    event.preventDefault(); 
+    // movie = $(this).attr("data-name");
+    movie = $(this).text();
+    console.log(movie);
+
+    displayMovieInfo(movie);
+ }
+
+// Adding click event listeners to all elements with a class of "movie"
+$("#movies-search").on("click", ".movie", savedMovieClick);
+
 
 // Adding click event listeners to all elements with a class of "city"
-$(document).on("click", ".actor", savedActorClick);
+$(document).on("click", ".name", savedActorClick);
+
+
+// Replaced the previous "on-click" event with the new one which displays the 
+// movie info, adds movie to a search history list and local storage
+// $(document).on("click", "#add-movie", displayMovieInfo);
+$("#add-movie").on("click", function(event) {
+  event.preventDefault();
+  movie = $("#movie-input").val().trim();
+  if (movies.indexOf(movie) === -1){
+   movies.push(movie);
+  }
+  localStorage.setItem("movies_list", JSON.stringify(movies));
+  displayMovieInfo(movie);
+
+  renderMovieSearchButtons();
+  
+});
