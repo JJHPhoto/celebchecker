@@ -1,90 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Favorite Movies</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
-    />
-    <script
-      defer
-      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
-    ></script>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>Favorite Movies</title>
 
-  <body>
-    <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title has-text-centered has-text-primary-light">
-            Movie Search
-          </h1>
-          <h2 class="subtitle has-text-centered has-text-primary-light">
-            Search for a movie
-          </h2>
-        </div>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body class="full-height has-background-light">
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered has-text-dark is-size-2">
+          Celebrity Nationality Checker
+        </h1>
+        <h3 class="subtitle has-text-centered has-text-dark is-size-5">
+          A little app for checking the nationality of celebrities
+        </h3>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section container">
-      <div class="columns">
-        <div class="column is-half is-offset-one-quarter">
-          <input
-            class="input"
-            id="movie-input"
-            type="text"
-            placeholder="Search movie"
-          />
-        </div>
-        <div class="column">
-          <input
-            class="button has-background-primary has-text-primary-light"
-            id="add-movie"
-            type="submit"
-            value="Go"
-          />
-        </div>
-      </div>
-    </section>
-    
-
-
-    
-    <section>
+  <section class="section container">
     <div class="columns">
-      <div class="column is-one-fifth">
-        <p class="bd-notification is-info">Search History</p>
-        <div class="columns is-mobile">
-          <div class="column">
-            <p class="bd-notification is-info" id="movies-search">Past buttons</p>
-          </div>
-
-        </div>
+      <div class="column is-half is-offset-one-quarter">
+        <input class="input" id="movie-input" type="text" placeholder="Search for a movie to start the app" />
       </div>
       <div class="column">
-        <h3 class="bd-notification is-danger">Movie data</h3>
-        <div class="columns is-mobile">
-          <div class="column">
+        <input class="button has-background-primary has-text-primary-light" id="add-movie" type="submit" value="Go" />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <!-- line 40 add padding -->
+    <div class="columns px-6 is-b">
+      <div class="column is-one-fifth">
+        <h3 class="bd-notification is-info is-size-5">Search History</h3>
+        <div class="columns">
+          <div class="column ">
+            <p class="bd-notification is-info" id="movies-search">Past buttons</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <h3 class="bd-notification is-danger is-size-5">Movie data</h3>
+
+        <div class="columns">
+          <div class="column ">
             <div class="bd-notification is-danger" id="movies-poster">Movie Poster will appear here.</div>
           </div>
-          <div class="column is-half">
-            <div class="bd-notification is-danger" id="movies-view">List of celebrities involved in the movie will appear here.</div>
+          <div class="column is-half ">
+            <div class="bd-notification is-danger" id="movies-view">List of celebrities involved in the movie will
+              appear here.</div>
           </div>
-          <div class="column">
-            <p class="bd-notification is-danger" id="nation-view">Nationality of celebrities will appear here after their button is clicked.</p>
+          <div class="column ">
+            <p class="bd-notification is-danger" id="nation-view">Nationality of celebrities will appear here after
+              their button is clicked.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-    <!-- <section class="section">
+  <!-- <section class="section">
       <div class="columns is-one-fourth">
         <div class="column">
           <h3>Search History</h3>
@@ -107,10 +90,12 @@
           </div>
         </div>
       </div> -->
-    </section>
-  </body>
+  </section>
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="./assets/js/script.js"></script>
+</body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="./assets/js/script.js"></script>
+
 </html>
