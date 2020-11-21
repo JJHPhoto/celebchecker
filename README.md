@@ -1,4 +1,4 @@
-# Celeb Checker
+# [Celebrity Nationality Checker](https://jjhphoto.github.io/celebchecker/)
 
 ## 1. Application Description
 
@@ -52,3 +52,11 @@ When we finished our planning meeting, we had our roles in the presentation in p
 [GithubGist](https://gist.github.com/maephisto/9228207) <br>
 
 ## 5. Working screenshots
+
+![Image](./assets/images/Proj1-SS-1.jpg)
+![Image](./assets/images/Proj1-SS-2.jpg)
+![Image](./assets/images/Proj1-SS-3.jpg)
+![Image](./assets/images/Proj1-SS-4.jpg)
+![Image](./assets/images/Proj1-SS-5.jpg)
+![Image](./assets/images/Proj1-SS-6.jpg)
+![Image](./assets/images/Proj1-SS-7.jpg)
