@@ -32,6 +32,14 @@ At this stage we noticed a few things we wanted to change. The Nationalize API p
 
 With everything in place, we decided to see how or application worked. We were pretty satisfied with where we were and decided to make a new wireframe to have our application display our information better.
 
+Lana used Figma to do a great demo for the team of how our app should look on a phone & desktop. We spent some time working in ClickUp to assign each team tasks. Kat had worked on our localStorage over the weekend and we got that merged into our working repo. It was really fun to see how good we had gotten at that in comparison to the first few attempts.
+
+Before we broke off into our teams, we made sure to have our HTML laid out for the backend team. We didn’t want to create merge conflicts with both teams working on the HTML. We also made sure that the functionality of the JS was working so that the frontend team could use the HTML.
+
+By the end of the night, we had a working application. We decided we needed another night to discuss presentation and make sure everything was working before we presented to our class.
+
+When we finished our planning meeting, we had our roles in the presentation in place. We knew what each team member was going to talk about and we were comfortable with the flow of the presentation.
+
 ## 4. Resources
 
 [Nationalize API](https://nationalize.io/) <br>
