@@ -65,7 +65,7 @@ function displayMovieInfo(movie) {
         "<button>"
       ).text(director[i]);
       d1.addClass("name button has-background-primary has-text-primary-light");
-      d1.attr("data-name", director[i]); 
+      d1.attr("data-name", director[i]);
       directorDiv.append(d1);
     }
 
@@ -109,34 +109,34 @@ function checkNationality(name) {
     method: "GET",
   }).then(function (response) {
     var countries = response.country;
-    
+
     var pOne;
-  
-    
+
+
 
     if (countries.length === 0) {
       pOne = $("<div id='nation-view'></div>").text(
         "The name " + name + " is not in the database.")
-        nationDiv.append(pOne);
-      } else {
+      nationDiv.append(pOne);
+    } else {
 
       pOne = $("<div id='nation-view'></div>").html(`The name <b>${name}</b> is from the following countries:`)
 
-      
+
 
       nationDiv.append(pOne);
       for (let i = 0; i < countries.length; i++) {
         country = getCountryName(countries[i].country_id);
         var pOneOne = $("<div id='nation-view'></div>").text(
           country +
-            " with a probability of " +
-            (countries[i].probability * 100).toFixed(2) +
-            "%"
-        ); 
+          " with a probability of " +
+          (countries[i].probability * 100).toFixed(2) +
+          "%"
+        );
         nationDiv.append(pOneOne);
-        }  
-        
-      };
+      }
+
+    };
 
 
     $("#nation-view").append(nationDiv);
@@ -150,19 +150,27 @@ var inputEl = $("#movie-input");
 inputEl.keyup(function (e) {
   if (e.which === 13) {
     e.preventDefault();
+
     movie = $("#movie-input").val().toUpperCase().trim();
 
-    if (movie.length == 0 ) {
-      return false; }
+    if (!(isNaN(movie))) {
 
-    if (movies.indexOf(movie) === -1) {
-      movies.push(movie);
+      if (!alert("Movie not found! Please try again!")) { window.location.reload(); }
+      return;
     }
-    localStorage.setItem("movies_list", JSON.stringify(movies));
-    displayMovieInfo(movie);
+  }
+
+  if (movie.length == 0) {
+    return false;
+  }
+
+  if (movies.indexOf(movie) === -1) {
+    movies.push(movie);
+  }
+  localStorage.setItem("movies_list", JSON.stringify(movies));
+  displayMovieInfo(movie);
   renderMovieSearchButtons();
 
-  }
 });
 
 // // ********** Select the name to check nationality *****************
@@ -219,8 +227,15 @@ $(document).on("click", ".name", savedActorClick);
 $("#add-movie").on("click", function (event) {
   event.preventDefault();
   movie = $("#movie-input").val().toUpperCase().trim();
-  if (movie.length == 0 ) {
-    return false; }
+
+  if (!(isNaN(movie))) {
+
+    if (!alert("Movie not found! Please try again!")) { window.location.reload(); }
+    return;
+  }
+  if (movie.length == 0) {
+    return false;
+  }
 
   if (movies.indexOf(movie) === -1) {
     movies.push(movie);
