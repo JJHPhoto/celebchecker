@@ -30,7 +30,6 @@ function displayMovieInfo(movie) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-
     var movieDiv = $("<div class='movie'>");
     var actors = response.Actors.split(",");
     console.log(actors);
@@ -43,10 +42,7 @@ function displayMovieInfo(movie) {
     var actorDiv = $("<div class='actors'>");
 
     for (var i = 0; i < actors.length; i++) {
-
-      var a = $(
-        "<button>"
-      );
+      var a = $("<button>");
       var p2 = a.text(actors[i]);
       p2.addClass("name button has-background-primary has-text-primary-light");
       p2.attr("data-name", actors[i]);
@@ -55,15 +51,12 @@ function displayMovieInfo(movie) {
 
     movieDiv.append(actorDiv);
 
-
     var director = response.Director.split(",");
     var pTwo = $("<p>").text("Director(s): ");
     movieDiv.append(pTwo);
     var directorDiv = $("<div class='directors'>");
     for (var i = 0; i < director.length; i++) {
-      var d1 = $(
-        "<button>"
-      ).text(director[i]);
+      var d1 = $("<button>").text(director[i]);
       d1.addClass("name button has-background-primary has-text-primary-light");
       d1.attr("data-name", director[i]);
       directorDiv.append(d1);
@@ -77,9 +70,7 @@ function displayMovieInfo(movie) {
 
     var writerDiv = $("<div class='writers'>");
     for (var i = 0; i < writer.length; i++) {
-      var w1 = $(
-        "<button>"
-      ).text(writer[i]);
+      var w1 = $("<button>").text(writer[i]);
       w1.addClass("name button has-background-primary has-text-primary-light");
       w1.attr("data-name", writer[i]);
       writerDiv.append(w1);
@@ -87,13 +78,10 @@ function displayMovieInfo(movie) {
 
     movieDiv.append(writerDiv);
 
-
     var imgURL = response.Poster;
     var image = $("<img>").attr("src", imgURL);
     $("#movies-poster").append(image);
     $("#movies-view").append(movieDiv);
-
-
   });
 }
 
@@ -112,35 +100,30 @@ function checkNationality(name) {
 
     var pOne;
 
-
-
     if (countries.length === 0) {
       pOne = $("<div id='nation-view'></div>").text(
-        "The name " + name + " is not in the database.")
+        "The name " + name + " is not in the database."
+      );
       nationDiv.append(pOne);
     } else {
-
-      pOne = $("<div id='nation-view'></div>").html(`The name <b>${name}</b> is from the following countries:`)
-
-
+      pOne = $("<div id='nation-view'></div>").html(
+        `The name <b>${name}</b> is from the following countries:`
+      );
 
       nationDiv.append(pOne);
       for (let i = 0; i < countries.length; i++) {
         country = getCountryName(countries[i].country_id);
         var pOneOne = $("<div id='nation-view'></div>").text(
           country +
-          " with a probability of " +
-          (countries[i].probability * 100).toFixed(2) +
-          "%"
+            " with a probability of " +
+            (countries[i].probability * 100).toFixed(2) +
+            "%"
         );
         nationDiv.append(pOneOne);
       }
-
-    };
-
+    }
 
     $("#nation-view").append(nationDiv);
-
   });
 }
 
@@ -152,12 +135,6 @@ inputEl.keyup(function (e) {
     e.preventDefault();
 
     movie = $("#movie-input").val().toUpperCase().trim();
-
-    if (!(isNaN(movie))) {
-
-      if (!alert("Movie not found! Please try again!")) { window.location.reload(); }
-      return;
-    }
   }
 
   if (movie.length == 0) {
@@ -170,7 +147,6 @@ inputEl.keyup(function (e) {
   localStorage.setItem("movies_list", JSON.stringify(movies));
   displayMovieInfo(movie);
   renderMovieSearchButtons();
-
 });
 
 // // ********** Select the name to check nationality *****************
@@ -222,16 +198,12 @@ $("#movies-search").on("click", ".movie", savedMovieClick);
 // // ********** Adding click event listeners to all elements with a class of "name" ****************
 $(document).on("click", ".name", savedActorClick);
 
-
 // // ********** Adding click event listeners to search button ****************
 $("#add-movie").on("click", function (event) {
   event.preventDefault();
   movie = $("#movie-input").val().toUpperCase().trim();
 
-  if (!(isNaN(movie))) {
-
-    if (!alert("Movie not found! Please try again!")) { window.location.reload(); }
-    return;
+  if (!isNaN(movie)) {
   }
   if (movie.length == 0) {
     return false;
