@@ -51,10 +51,10 @@ function displayMovieInfo(movie) {
     for (var i = 0; i < actors.length; i++) {
       console.log(actors[i]);
       var a = $(
-        "<button class= 'button has-background-primary has-text-primary-light'>"
+        "<button>"
       );
       var p2 = a.text(actors[i]);
-      p2.addClass("name");
+      p2.addClass("name button has-background-primary has-text-primary-light");
       p2.attr("data-name", actors[i]);
       console.log(p2);
       actorDiv.append(p2);
@@ -70,10 +70,11 @@ function displayMovieInfo(movie) {
     var directorDiv = $("<div class='directors'>");
     for (var i = 0; i < director.length; i++) {
       var d1 = $(
-        "<button class= 'button has-background-primary has-text-primary-light'>"
+        "<button>"
       ).text(director[i]);
-      d1.addClass("name");
-      d1.attr("data-name", director[i]);
+      d1.addClass("name button has-background-primary has-text-primary-light");
+      // add button class here instead  
+      d1.attr("data-name", director[i]); 
       directorDiv.append(d1);
     }
 
@@ -87,9 +88,9 @@ function displayMovieInfo(movie) {
     var writerDiv = $("<div class='writers'>");
     for (var i = 0; i < writer.length; i++) {
       var w1 = $(
-        "<button class= 'button has-background-primary has-text-primary-light'>"
+        "<button>"
       ).text(writer[i]);
-      w1.addClass("name");
+      w1.addClass("name button has-background-primary has-text-primary-light");
       w1.attr("data-name", writer[i]);
       writerDiv.append(w1);
     }
@@ -124,7 +125,9 @@ function checkNationality(name) {
     var countries = response.country;
     
     var pOne;
-
+  
+    
+    
     console.log(countries.length);
 
     if (countries.length === 0) {
@@ -132,9 +135,13 @@ function checkNationality(name) {
         "The name " + name + " is not in the database.")
         nationDiv.append(pOne);
       } else {
-      pOne = $("<div id='nation-view'></div>").text(
-        "The name " + name + " is from the following countries:"
-      )
+      // pOne = $("<div id='nation-view'></div>").text(
+      //   "The name " + name + " is from the following countries:"
+      // )
+      pOne = $("<div id='nation-view'></div>").html(`The name <b>${name}</b> is from the following countries:`)
+      //   made name bold 
+      
+
       nationDiv.append(pOne);
       for (let i = 0; i < countries.length; i++) {
         country = getCountryName(countries[i].country_id);
@@ -162,8 +169,18 @@ var inputEl = $("#movie-input");
 inputEl.keyup(function (e) {
   if (e.which === 13) {
     e.preventDefault();
-    movie = $("#movie-input").val().trim();
+    movie = $("#movie-input").val().toUpperCase().trim();
+    // make it uppercase button
+    if (movie.length == 0 ) {
+      return false; }
+    ///// no empty button appear when there is no value in inpit box and clicked 
+    if (movies.indexOf(movie) === -1) {
+      movies.push(movie);
+    }
+    localStorage.setItem("movies_list", JSON.stringify(movies));
     displayMovieInfo(movie);
+  renderMovieSearchButtons();
+  // added  this for rendering buttons with enter key 
   }
 });
 
@@ -193,8 +210,8 @@ function getCountryName(countryCode) {
 function renderMovieSearchButtons() {
   $("#movies-search").empty();
   for (var i = 0; i < movies.length; i++) {
-    var a = $("<button class= 'button has-background-primary has-text-primary-light'>");
-    a.addClass("movie");
+    var a = $("<button>");
+    a.addClass("movie button has-background-primary has-text-primary-light");
     a.attr("data-name", movies[i]);
     a.text(movies[i]);
     var linebreak = $("<br>");
@@ -224,7 +241,10 @@ $(document).on("click", ".name", savedActorClick);
 // $(document).on("click", "#add-movie", displayMovieInfo);
 $("#add-movie").on("click", function (event) {
   event.preventDefault();
-  movie = $("#movie-input").val().trim();
+  movie = $("#movie-input").val().toUpperCase().trim();
+  if (movie.length == 0 ) {
+    return false; }
+  ///// no empty button appear when there is no value in inpit box and clicked 
   if (movies.indexOf(movie) === -1) {
     movies.push(movie);
   }
