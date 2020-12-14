@@ -1,5 +1,7 @@
 # [Celebrity Nationality Checker](https://jjhphoto.github.io/celebchecker/)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## 1. Application Description
 
 Our application lets you search for a movie title using OMDB’s API and then check the nationality of the actors, writers and directors using Nationalize’s API. We believe our app could be a fun distraction for our users.
